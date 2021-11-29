@@ -1,4 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import {
+	BrowserRouter,
+	Routes,
+	Route,
+	Outlet,
+	useRoutes,
+	Link,
+} from "react-router-dom";
+import { navigate } from "gatsby";
+
 import { Navbar, Container, Nav, NavDropdown, Col, Row, Button } from 'react-bootstrap';
 import { StaticImage } from 'gatsby-plugin-image';
 import { SocialIcon } from '..';
@@ -6,8 +16,10 @@ import { Disclaimer } from '..';
 import { useTranslation } from "react-i18next"
 import useDocumentScrollThrottled from '../../helper/useDocumentScrollThrottled';
 // import styled from 'styled-components'
+import Unimons from './Unimons.mp4'
 import Fade from 'react-reveal/Fade';
 import { Telegram, Twitter, MediumIcon, Reddit, Logo, Lion,Megaphone } from '../../images'
+import BuyToken from '../../pages/buy'
 
 const Header = ({ onSelectLanguage }) => {
 	console.log(onSelectLanguage, ">>>fjkf<<<<");
@@ -24,9 +36,9 @@ const Header = ({ onSelectLanguage }) => {
 			document.getElementById("navbar").style.backgroundColor = "white";
 			document.getElementById("nav-links").style.color = "black";
 			document.getElementById("nav-links2").style.color = "black";
-			document.getElementById("nav-lang").style.color = "black";
+			// document.getElementById("nav-lang").style.color = "black";
 			document.getElementById("logo").style.color = "black";
-			document.getElementById("basic-nav-dropdown").style.color = "black";
+			// document.getElementById("basic-nav-dropdown").style.color = "black";
 			document.getElementById("navbar").style.boxShadow =
 				"1px 1px 8px 1px rgba(102,102,102,.6)";
 			document.getElementById("toggler").style.filter =
@@ -34,18 +46,18 @@ const Header = ({ onSelectLanguage }) => {
 			document.getElementById("navbar").style.transition = "0.6s";
 		} else if (currentScrollTop > 0 || currentScrollTop <= 60) {
 			document.getElementById("navbar").style.padding = "10px 10px";
-			document.getElementById("nav-lang").style.color = "white";
-			document.getElementById("logo").style.color = "white";
+			// document.getElementById("nav-lang").style.color = "black";
+			document.getElementById("logo").style.color = "black";
 			document.getElementById("navbar").style.transition = "0s";
 			document.getElementById("navbar").style.backgroundColor = "transparent";
 			document.getElementById("navbar").style.fontSize = "1.05rem";
 			document.getElementById("navbar").style.boxShadow =
 				"0px 0px 0px 0px rgba(0,0,0,0)";
-			document.getElementById("nav-links").style.color = "white";
-			document.getElementById("nav-links2").style.color = "white";
-			document.getElementById("basic-nav-dropdown").style.color = "white";
+			document.getElementById("nav-links").style.color = "black";
+			document.getElementById("nav-links2").style.color = "black";
+			// document.getElementById("basic-nav-dropdown").style.color = "black";
 			document.getElementById("toggler").style.filter =
-				"brightness(0)invert(1)";
+				"brightness(1)invert(0)";
 		}
 	});
 
@@ -57,151 +69,162 @@ const Header = ({ onSelectLanguage }) => {
 		onSelectLanguage(lang);
 	};
 
-	useEffect(() => {
-		const canvas = document.getElementById("canvas1");
-		if (canvas != null) {
-			const ctx = canvas.getContext("2d");
+	// const App = () => {
+	// 	return(
+	// 		<Router>
+	// 			<Routes>
+	// 				<Route path="/buy-token" element={<BuyToken />} />
+	// 			</Routes>
+	// 		</Router>
+	// 	)
+	// }
 
-			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight;
 
-			let area = Math.sqrt(canvas.width * canvas.height);
-			let radiusLength = (canvas.width * canvas.height) / 8000;
-			// console.log(canvas.width)
+	// useEffect(() => {
+		// const canvas = document.getElementById("canvas1");
+		// if (canvas != null) {
+		// 	const ctx = canvas.getContext("2d");
 
-			let particlesArray;
+		// 	canvas.width = window.innerWidth;
+		// 	canvas.height = window.innerHeight;
 
-			let mouse = {
-				x: null,
-				y: null,
-				radius: radiusLength,
-			};
+		// 	let area = Math.sqrt(canvas.width * canvas.height);
+		// 	let radiusLength = (canvas.width * canvas.height) / 8000;
+		// 	// console.log(canvas.width)
 
-			window.addEventListener("mousemove", function (event) {
-				mouse.x = event.x;
-				mouse.y = event.y;
-			});
-			window.addEventListener("mouseout", function (event) {
-				mouse.x = undefined;
-				mouse.y = undefined;
-			});
-			window.addEventListener("resize", function (event) {
-				canvas.width = window.innerWidth;
-				canvas.height = window.innerHeight;
-				radiusLength = (canvas.width * canvas.height) / 9000;
-				createParticles();
-			});
+		// 	let particlesArray;
 
-			class Particle {
-				constructor(x, y, velX, velY, size, color) {
-					this.x = x;
-					this.y = y;
-					this.velX = velX;
-					this.velY = velY;
-					this.size = size;
-					this.color = color;
-				}
+		// 	let mouse = {
+		// 		x: null,
+		// 		y: null,
+		// 		radius: radiusLength,
+		// 	};
 
-				draw() {
-					ctx.beginPath();
-					//draw a circle and fill it
-					//at posX, posY ,of size, fromAngle 0rad ,to 2pi Rad
-					ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-					ctx.fillStyle = "#8c5523";
-					ctx.fill();
-				}
+		// 	window.addEventListener("mousemove", function (event) {
+		// 		mouse.x = event.x;
+		// 		mouse.y = event.y;
+		// 	});
+		// 	window.addEventListener("mouseout", function (event) {
+		// 		mouse.x = undefined;
+		// 		mouse.y = undefined;
+		// 	});
+		// 	window.addEventListener("resize", function (event) {
+		// 		canvas.width = window.innerWidth;
+		// 		canvas.height = window.innerHeight;
+		// 		radiusLength = (canvas.width * canvas.height) / 9000;
+		// 		createParticles();
+		// 	});
 
-				update() {
-					if (this.x > canvas.width || this.x < 0) {
-						this.velX = -this.velX;
-					}
-					if (this.y > canvas.height || this.y < 0) {
-						this.velY = -this.velY;
-					}
+		// 	class Particle {
+		// 		constructor(x, y, velX, velY, size, color) {
+		// 			this.x = x;
+		// 			this.y = y;
+		// 			this.velX = velX;
+		// 			this.velY = velY;
+		// 			this.size = size;
+		// 			this.color = color;
+		// 		}
 
-					// collisions
-					let dx = mouse.x - this.x;
-					let dy = mouse.y - this.y;
-					let dist = Math.sqrt(dx * dx + dy * dy);
-					if (dist < mouse.radius + this.size) {
-						//Buffers on edge of the screens
-						const buffer = this.size * 10;
+		// 		draw() {
+		// 			ctx.beginPath();
+		// 			//draw a circle and fill it
+		// 			//at posX, posY ,of size, fromAngle 0rad ,to 2pi Rad
+		// 			ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+		// 			ctx.fillStyle = "#8c5523";
+		// 			ctx.fill();
+		// 		}
 
-						if (mouse.x < this.x && this.x < canvas.width - buffer) {
-							this.x += 10;
-						}
-						if (mouse.x > this.x && this.x > buffer) {
-							this.x -= 10;
-						}
-						if (mouse.y < this.y && this.y < canvas.height - buffer) {
-							this.y += 10;
-						}
-						if (mouse.y > this.y && this.y > buffer) {
-							this.y -= 10;
-						}
-					}
+		// 		update() {
+		// 			if (this.x > canvas.width || this.x < 0) {
+		// 				this.velX = -this.velX;
+		// 			}
+		// 			if (this.y > canvas.height || this.y < 0) {
+		// 				this.velY = -this.velY;
+		// 			}
 
-					//moving
-					this.x += this.velX;
-					this.y += this.velY;
-					this.draw();
-				}
-			}
+		// 			// collisions
+		// 			let dx = mouse.x - this.x;
+		// 			let dy = mouse.y - this.y;
+		// 			let dist = Math.sqrt(dx * dx + dy * dy);
+		// 			if (dist < mouse.radius + this.size) {
+		// 				//Buffers on edge of the screens
+		// 				const buffer = this.size * 10;
 
-			function createParticles() {
-				particlesArray = [];
-				let noOfParticles = (canvas.width * canvas.height) / 5000;
+		// 				if (mouse.x < this.x && this.x < canvas.width - buffer) {
+		// 					this.x += 10;
+		// 				}
+		// 				if (mouse.x > this.x && this.x > buffer) {
+		// 					this.x -= 10;
+		// 				}
+		// 				if (mouse.y < this.y && this.y < canvas.height - buffer) {
+		// 					this.y += 10;
+		// 				}
+		// 				if (mouse.y > this.y && this.y > buffer) {
+		// 					this.y -= 10;
+		// 				}
+		// 			}
 
-				for (let i = 0; i < noOfParticles; i++) {
-					let size = Math.random() * 5 + 1;
+		// 			//moving
+		// 			this.x += this.velX;
+		// 			this.y += this.velY;
+		// 			this.draw();
+		// 		}
+		// 	}
 
-					let x = Math.random() * (window.innerWidth - 2 * size) + 2 * size;
-					let y = Math.random() * (window.innerHeight - 2 * size) + 2 * size;
-					let velX = Math.random() * 5 - 2.5;
-					let velY = Math.random() * 5 - 2.5;
-					let color = "#8c5523";
-					// console.log(x + " " + y + " " + size + " " + velX + " " + velY);
+		// 	function createParticles() {
+		// 		particlesArray = [];
+		// 		let noOfParticles = (canvas.width * canvas.height) / 5000;
 
-					particlesArray.push(new Particle(x, y, velX, velY, size, color));
-				}
-			}
-			function connect() {
-				let vicinityDist = (canvas.width * canvas.height) / 81;
-				for (let i = 0; i < particlesArray.length; i++) {
-					for (let j = i; j < particlesArray.length; j++) {
-						let distance =
-							Math.pow(particlesArray[i].x - particlesArray[j].x, 2) +
-							Math.pow(particlesArray[i].y - particlesArray[j].y, 2);
+		// 		for (let i = 0; i < noOfParticles; i++) {
+		// 			let size = Math.random() * 5 + 1;
 
-						let opacity = 1 - distance / 25000;
-						//actually the square of distance
+		// 			let x = Math.random() * (window.innerWidth - 2 * size) + 2 * size;
+		// 			let y = Math.random() * (window.innerHeight - 2 * size) + 2 * size;
+		// 			let velX = Math.random() * 5 - 2.5;
+		// 			let velY = Math.random() * 5 - 2.5;
+		// 			let color = "#8c5523";
+		// 			// console.log(x + " " + y + " " + size + " " + velX + " " + velY);
 
-						if (distance < vicinityDist) {
-							//draw a line between them
-							ctx.strokeStyle = "rgba(100,73,25," + opacity + ")";
-							ctx.lineWidth = 1;
-							ctx.beginPath();
-							ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-							ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-							ctx.stroke();
-						}
-					}
-				}
-			}
-			function animate() {
-				requestAnimationFrame(animate);
-				ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+		// 			particlesArray.push(new Particle(x, y, velX, velY, size, color));
+		// 		}
+		// 	}
+		// 	function connect() {
+		// 		let vicinityDist = (canvas.width * canvas.height) / 81;
+		// 		for (let i = 0; i < particlesArray.length; i++) {
+		// 			for (let j = i; j < particlesArray.length; j++) {
+		// 				let distance =
+		// 					Math.pow(particlesArray[i].x - particlesArray[j].x, 2) +
+		// 					Math.pow(particlesArray[i].y - particlesArray[j].y, 2);
 
-				for (let i = 0; i < particlesArray.length; i++) {
-					particlesArray[i].update();
-				}
-				connect();
-			}
+		// 				let opacity = 1 - distance / 25000;
+		// 				//actually the square of distance
 
-			createParticles();
-			animate();
-		}
-	}, []);
+		// 				if (distance < vicinityDist) {
+		// 					//draw a line between them
+		// 					ctx.strokeStyle = "rgba(100,73,25," + opacity + ")";
+		// 					ctx.lineWidth = 1;
+		// 					ctx.beginPath();
+		// 					ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+		// 					ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+		// 					ctx.stroke();
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// 	function animate() {
+		// 		requestAnimationFrame(animate);
+		// 		ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+		// 		for (let i = 0; i < particlesArray.length; i++) {
+		// 			particlesArray[i].update();
+		// 		}
+		// 		connect();
+		// 	}
+
+		// 	createParticles();
+		// 	animate();
+		// }
+	// }, []);
 	console.log(language, ">>>lang<<<<");
 
 	// const checkLangugae = (langugae) => {
@@ -223,6 +246,15 @@ const Header = ({ onSelectLanguage }) => {
 	//         }
 	//     }
 	// }
+		const App=() =>{
+			return (
+				<BrowserRouter>
+					<Routes>
+						<Route path='/buy' element={<BuyToken />} />
+					</Routes>
+				</BrowserRouter>
+			);
+		}
 
 	return (
 		<div>
@@ -289,7 +321,9 @@ const Header = ({ onSelectLanguage }) => {
 						id='logo'
 					>
 						<Disclaimer atlName='telegram' imgUrl={Logo} />
-						<div className='py-3 ps-3'>{t("home.safariSwap")}</div>
+						<div className='py-3 ps-3' style={{ color: "black" }}>
+							{t("home.safariSwap")}
+						</div>
 					</Navbar.Brand>
 					<Navbar.Toggle aria-controls='basic-navbar-nav' id='toggler' />
 					<Navbar.Collapse
@@ -298,21 +332,25 @@ const Header = ({ onSelectLanguage }) => {
 					>
 						<Nav className='mobile_menu mobile_menu_open'>
 							<div className='buylink'>
-								<a href='https://pancakeswap.finance/swap?inputCurrency=0x55d398326f99059ff775485246999027b3197955&outputCurrency=0x080cc6eb47dcae6a42fc5408ebd5cf2aa05eaec3'>
-									<Button className='buybutton' type='submit'>
-										{language === "en"
-											? "Buy"
-											: language === "cn"
-											? "买"
-											: "買う"}{" "}
-										<img
-											className='pancakeIcon'
-											alt='pancakeswap'
-											src='/static/pancakeswap-e1d4dec34dc4d1c7355331f9abd4f8dd.png'
-											id='pancakeswap_icon'
-										/>
+								{/* <a href='https://pancakeswap.finance/swap?inputCurrency=0x55d398326f99059ff775485246999027b3197955&outputCurrency=0x080cc6eb47dcae6a42fc5408ebd5cf2aa05eaec3'> */}
+								{/* <BrowserRouter>
+								<Link to='/buy'> */}
+									<Button className='buybutton' type='submit' onClick={()=>{navigate('/buy')}}>
+									{language === "en"
+									? "Buy"
+									: language === "cn"
+									? "买"
+									: "買う"}{" "}
+									<img
+									className='pancakeIcon'
+									alt='pancakeswap'
+									src='/static/pancakeswap-e1d4dec34dc4d1c7355331f9abd4f8dd.png'
+									id='pancakeswap_icon'
+									/>
 									</Button>
-								</a>
+								{/* </Link>
+								</BrowserRouter> */}
+								{/* </a> */}
 								<a href='https://docs.safariswap.io/'>
 									<Button
 										// variant='custom'
@@ -328,12 +366,13 @@ const Header = ({ onSelectLanguage }) => {
 								</a>
 							</div>
 
-							<div className='DropdownLang px-3 py-2'>
+							{/* <div className='DropdownLang px-3 py-2'>
 								<Button
 									id='nav-lang'
 									variant='custom'
 									onClick={() => setShowDropdownLang(!showDropdownLang)}
 									// style={{fontSize:'0.9rem', padding: '0.375rem'}}
+									style={{ color: "black" }}
 								>
 									<img
 										src={`https://lipis.github.io/flag-icon-css/flags/4x3/${
@@ -380,19 +419,70 @@ const Header = ({ onSelectLanguage }) => {
 										</ul>
 									</div>
 								)}
-							</div>
-							<Nav.Link href='#tokenomics' id='nav-links' className='px-3 py-3'>
-								{t("home.tokenomics")}
+							</div> */}
+							<Nav.Link
+								href='#tokenomics'
+								id='nav-links'
+								className='px-3 py-3'
+								style={{ color: "black" }}
+							>
+								{t("Open Booster")}
+							</Nav.Link>
+							<Nav.Link
+								href='#tokenomics'
+								id='nav-links'
+								className='px-3 py-3'
+								style={{ color: "black" }}
+							>
+								{t("My Collection")}
+							</Nav.Link>
+							<Nav.Link
+								href='#tokenomics'
+								id='nav-links'
+								className='px-3 py-3'
+								style={{ color: "black" }}
+							>
+								{t("NFT Staking")}
 							</Nav.Link>
 							{/* <Nav.Link href="#charity" id="nav-links1" className="px-3 py-3">{t('home.charity')}</Nav.Link> */}
-							<Nav.Link href='#documents' id='nav-links2' className='px-3 py-3'>
-								{t("home.documents")}
+							<Nav.Link
+								href='#documents'
+								id='nav-links2'
+								className='px-3 py-3'
+								style={{ color: "black" }}
+							>
+								{t("Staking")}
+							</Nav.Link>
+							{/* <Nav.Link
+								href='#tokenomics'
+								id='nav-links'
+								className='px-3 py-3'
+								style={{ color: "black" }}
+							>
+								{t("Booster Specials")}
+							</Nav.Link>
+							<Nav.Link
+								href='#tokenomics'
+								id='nav-links'
+								className='px-3 py-3'
+								style={{ color: "black" }}
+							>
+								{t("Explorer")}
+							</Nav.Link> */}
+							<Nav.Link
+								href='#tokenomics'
+								id='nav-links'
+								className='px-3 py-3'
+								style={{ color: "black" }}
+							>
+								{t("Game")}
 							</Nav.Link>
 
-							<NavDropdown
+							{/* <NavDropdown
 								title={t("home.more")}
 								className='px-3 py-2'
 								variant='custom'
+								style={{ color: "black !important" }}
 								id='basic-nav-dropdown'
 							>
 								<NavDropdown.Item href='#roadmaps' variant='custom'>
@@ -401,8 +491,7 @@ const Header = ({ onSelectLanguage }) => {
 								<NavDropdown.Item href='#community' variant='custom'>
 									{t("home.community")}
 								</NavDropdown.Item>
-								{/* <NavDropdown.Item href="#contact" variant='custom'>{t('home.contact')}</NavDropdown.Item> */}
-							</NavDropdown>
+							</NavDropdown> */}
 							{/* <Nav.Link href="https://pancakeswap.finance/swap#/swap?outputCurrency=0xc748673057861a797275cd8a068abb95a902e8de" className="px-2"><Button variant='custom' className="Btn">Buy Now</Button>{' '}</Nav.Link> */}
 						</Nav>
 					</Navbar.Collapse>
@@ -416,10 +505,12 @@ const Header = ({ onSelectLanguage }) => {
 							<Col lg='6' md='12'>
 								<Fade bottom>
 									<div className='slider_content'>
-										<h1 className='mb-4 white_color'>
+										<h1 className='mb-4 white_color' style={{ color: "black" }}>
 											{" "}
 											{t("home.safariSwap")}
-											<span className='white_color'>,{t("home.giant")}</span>
+											<span className='white_color' style={{ color: "black" }}>
+												,{t("home.giant")}
+											</span>
 										</h1>
 										<a href='https://app.safariswap.io/'>
 											<Button
@@ -428,13 +519,13 @@ const Header = ({ onSelectLanguage }) => {
 												type='submit'
 											>
 												{language === "en"
-													? "Launch App"
+													? "Buy NFT"
 													: language === "cn"
-													? "启动应用程序"
-													: "アプリを起動"}
+													? "Buy NFT"
+													: "Buy NFT"}
 											</Button>
 										</a>
-										<div className='buylink1'>
+										{/* <div className='buylink1'>
 											<a href='https://pancakeswap.finance/swap?inputCurrency=0x55d398326f99059ff775485246999027b3197955&outputCurrency=0x080cc6eb47dcae6a42fc5408ebd5cf2aa05eaec3'>
 												<Button className='buybutton' type='submit'>
 													{language === "en"
@@ -518,19 +609,35 @@ const Header = ({ onSelectLanguage }) => {
 													</a>
 												</Col>
 											</Row>
-										</div>
+										</div> */}
 									</div>
 								</Fade>
 							</Col>
 							<Col lg='6' md='12'>
 								<div className='slider_img'>
-									<Disclaimer atlName='slider' imgUrl={Lion} />
+									{/* <Disclaimer atlName='slider' imgUrl={Unimons} /> */}
+									<video
+										className='vid'
+										id='auto'
+										playsInline
+										loop
+										muted
+										autoPlay
+										controls
+										preload='auto'
+										width='500'
+										height='500'
+										style={{ borderRadius: "20px" }}
+									>
+										<source src={Unimons} type='video/mp4' />
+									</video>
+									<script>document.getElementById('auto').play();</script>
 								</div>
 							</Col>
 						</Row>
 					</div>
 				</Container>
-				<canvas id='canvas1'></canvas>
+				{/* <canvas id='canvas1'></canvas> */}
 			</div>
 		</div>
 	);

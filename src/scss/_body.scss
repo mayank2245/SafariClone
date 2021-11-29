@@ -24,6 +24,10 @@ body {
 	box-shadow: rgb(0 0 0 / 15%) 11px 0px 28px 0px;
 	color: $white-color;
 }
+.footerstyle {
+	flex: 0 0 auto;
+	width: 100% !important;
+}
 
 .one_box_heading {
 	color: rgb(255, 168, 1);
@@ -145,6 +149,9 @@ body {
 	font-size: 72px;
 	color: rgb(0, 30, 0);
 	line-height: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .carousel h2 {
 	font-family: Rza;
@@ -338,7 +345,7 @@ body {
 .community_social_icon img {
 	width: 28px;
 }
-.community_social_icon .social_Icon {
+.community_social_icon .socials_Icon {
 	padding: 11px;
 }
 .contact_box {
@@ -448,8 +455,32 @@ body {
 	width: 5rem ;
 }
 
+.socials_Icon {
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+    width: 100%;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    margin-right: 25px;
+    margin-bottom: 15px;
+    padding: 22px 22px;
+    cursor: pointer;
+}
+.socials_Icon:hover {
+    transition: 0.8s;
+    transform: scale(1.1);
+    box-shadow: 0 0px 10px 0px rgb(0 0 0 / 15%);
+}
+
 .icon_Row {
 	width: 15rem;
+}
+.slider_img {
+	margin-top: 3rem ;
+	display: flex;
+	justify-content: center;
 }
 
 @media screen and (max-width: 1400px) {
@@ -462,7 +493,7 @@ body {
 	.community_social_icon img {
 		width: 22px;
 	}
-	.community_social_icon .social_Icon {
+	.community_social_icon .socials_Icon {
 		padding: 9px;
 		// width: 50px !important;
 	}
@@ -621,6 +652,17 @@ body {
         display: block !important;
         flex-direction: row;
     }
+	#toggler {
+		filter: brightness(1)invert(0);
+		border-color: black;
+	}
+	.roadmaps h2 {
+		font-size: 3rem;
+	}
+	.footerstyle {
+		flex: 0 0 auto;
+		width: 100% !important;
+	}
 
 
 }
@@ -769,6 +811,10 @@ body {
 	.starnft-heading {
 		font-size: 2rem !important;
 	}
+	.vid {
+		width:450px;
+		height: 450px;
+	}
 }
 
 @media screen and (max-width: 510px) {
@@ -777,6 +823,10 @@ body {
     }
 	.details p{
 		font-size: 14px !important;
+	}
+	.vid {
+		width:350px;
+		height: 350px;
 	}
 
 }
@@ -801,6 +851,9 @@ body {
     .advertisement{
         font-size: 12px !important;
     }
+	.roadmaps h2 {
+		font-size: 1.8rem;
+	}
 }
 
 @media screen and (max-width: 400px) {
@@ -809,6 +862,13 @@ body {
 	}
 	.token {
 		padding: 0px !important;
+	}
+	.vid {
+		width:250px;
+		height: 250px;
+	}
+	.roadmaps h2 {
+		font-size: 1.5rem;
 	}
 }
 
@@ -848,6 +908,9 @@ body {
     .megaphone{
         height:23px;
     }
+	.roadmaps h2 {
+		font-size: 1.2rem;
+	}
 
 }
 
@@ -1201,6 +1264,8 @@ body {
 
 .launchbutton {
 	background-color: #fbb034;
+	margin-right: 0.2rem;
+	padding: 0.3rem 0.7rem;
 }
 
 .launchbutton:focus {
@@ -1209,7 +1274,7 @@ body {
 
 .buybutton {
 	background-color: rgb(31, 199, 212);
-	margin-top: 0.7rem;
+	margin-right: 0.2rem;
 	padding: 0.2rem 0.7rem;
 }
 
@@ -1226,20 +1291,34 @@ body {
 }
 .gitdocsbutton {
 	background-color: #9309a0;
-	margin-top: 0.7rem;
-	padding: 0.2rem 0.7rem;
-	margin-left: 0.7rem;
+	// margin-top: 0.7rem;
+	padding: 0.3rem 0.7rem;
+	// margin-left: 0.7rem;
+}
+.gitdocsbuttonfirst {
+	background-color: #9309a0;
+	// margin-top: 0.7rem;
+	padding: 0.22rem 0.7rem;
+	// margin-left: 0.7rem;
 }
 .gitdocsbutton:focus {
+	background-color: #9309a0 !important;
+}
+.gitdocsbuttonfirst:focus {
 	background-color: #9309a0 !important;
 }
 
 .gitdocsbutton:hover {
 	background-color: #82088d !important;
 }
+.gitdocsbuttonfirst:hover {
+	background-color: #82088d !important;
+}
 .buylink {
 	// background-color: #fbb034;
+	display:flex;
 	font-size: 1.05rem;
+	align-items: center;
 }
 .btn-primary {
 	border: none;

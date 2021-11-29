@@ -10,10 +10,8 @@ const Footer = ({ t }) => {
       <div className="footerContainer">
         <Container>
           <Row>
-            <Col lg="6" md="12" className='socialRow'>
+            {/* <Col lg="6" md="12" className='socialRow'>
               <GroupSocialIcon />
-            </Col>
-            {/* <Col lg="6" md="12">
             </Col> */}
           </Row>
           <hr className="white_color mt-5" />

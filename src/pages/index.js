@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
 import {
+	BrowserRouter,
+	Routes,
+	Route,
+	Outlet,
+	useRoutes,
+	Link,
+} from "react-router-dom";
+
+import {
 	BoardSection,
 	CommunitySection,
 	ContactSection,
@@ -21,7 +30,8 @@ import {
 	StarNFTs,
 	VideoIntro,
 	GameReviews,
-	Token_detail
+	Token_detail,
+	BuyToken
 } from "../components";
 import { Button, Container, Row } from "react-bootstrap";
 import { withTrans } from "../i18n/withTrans";
@@ -94,6 +104,12 @@ const IndexPage = (props) => {
 						<CommunitySection t={t} />
 
 						<ContactSection t={t} />
+						{/* <BrowserRouter>
+							<Routes>
+								<Route path='/buy' element={<BuyToken/>} />
+							</Routes>
+						</BrowserRouter> */}
+						{/* <BuyToken /> */}
 						{/* <CharitySection t={t}/>
                  <CharityDonationSection t={t}/> */}
 						{/* <BoardSection /> */}

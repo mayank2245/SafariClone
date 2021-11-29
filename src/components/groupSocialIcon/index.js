@@ -10,7 +10,7 @@ const GroupSocialIcon = () => {
 				<div className='group_social_icon'>
 					<Row className='socialicon_row'>
 						{/* <div className='firstRow'> */}
-						<Col xl='4' lg='6' md='6' sm='10' xs='10' className='icon_Row'>
+						<Col xl='6' lg='6' md='6' sm='10' xs='10' className='icon_Row'>
 							<a href='https://t.me/safariswapofficial'>
 								<SocialIcon
 									atlName='telegram'
@@ -22,7 +22,7 @@ const GroupSocialIcon = () => {
 								Go to Twitter for all updates and announcements.
 							</p>
 						</Col>
-						<Col xl='4' lg='6' md='6' sm='10' xs='10' className='icon_Row'>
+						<Col xl='6' lg='6' md='6' sm='10' xs='10' className='icon_Row'>
 							<a href='https://www.reddit.com/r/Safariswap/'>
 								<SocialIcon atlName='Reddit' imgUrl={Reddit} />
 							</a>
@@ -31,7 +31,7 @@ const GroupSocialIcon = () => {
 								users.
 							</p>
 						</Col>
-						<Col xl='4' lg='6' md='6' sm='10' xs='10' className='icon_Row'>
+						<Col xl='6' lg='6' md='6' sm='10' xs='10' className='icon_Row'>
 							<a href='https://twitter.com/SafariswapDex'>
 								<SocialIcon atlName='Twitter' imgUrl={Twitter} />
 							</a>
@@ -40,7 +40,7 @@ const GroupSocialIcon = () => {
 								users.
 							</p>
 						</Col>
-						<Col xl='4' lg='6' md='6' sm='10' xs='10' className='icon_Row'>
+						<Col xl='6' lg='6' md='6' sm='10' xs='10' className='icon_Row'>
 							<a href='https://medium.com/@safariswapdex'>
 								<SocialIcon atlName='mediumicon' imgUrl={MediumIcon} />
 							</a>

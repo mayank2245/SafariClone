@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
-import { SocialIcon } from '..'
 import { Disclaimer } from '..'
+import {Icons} from '..'
 import {Telegram, Twitter, Instagram, MediumIcon, Reddit, Medium, Instalogo, Twitterlogo, Redditlogo, Telelogo } from '../../images'
 import Fade from 'react-reveal/Fade';
 
@@ -41,30 +41,30 @@ const CommunitySection = ({ t }) => {
                                         <Row>
                                             <Col xl="2" lg="2" md="2" sm="2" xs="2" >
                                                 <a href="https://t.me/safariswapofficial">
-                                                    <SocialIcon atlName='telegram' imgUrl={Telegram} />
+                                                    <Icons atlName='telegram' imgUrl={Telegram} />
                                                 </a>
 
                                             </Col>
                                             <Col xl="2" lg="2" md="2" sm="2" xs="2" >
                                                 <a href="https://www.reddit.com/r/Safariswap/">
-                                                    <SocialIcon atlName='Reddit' imgUrl={Reddit} />
+                                                    <Icons atlName='Reddit' imgUrl={Reddit} />
                                                 </a>
 
                                             </Col>
                                             <Col xl="2" lg="2" md="2" sm="2" xs="2" >
                                                 <a href="https://twitter.com/SafariswapDex">
-                                                    <SocialIcon atlName='Twitter' imgUrl={Twitter} />
+                                                    <Icons atlName='Twitter' imgUrl={Twitter} />
                                                 </a>
 
                                             </Col>
                                             <Col xl="2" lg="2" md="2" sm="2" xs="2" >
                                                 <a href="Https://instagram.com/safariswap">
-                                                    <SocialIcon atlName='Instagram' imgUrl={Instagram} />
+                                                    <Icons atlName='Instagram' imgUrl={Instagram} />
                                                 </a>
                                             </Col>
                                             <Col xl="2" lg="2" md="2" sm="2" xs="2" >
                                                 <a href="https://medium.com/@safariswapdex">
-                                                    <SocialIcon atlName='mediumicon' imgUrl={MediumIcon} />
+                                                    <Icons atlName='mediumicon' imgUrl={MediumIcon} />
                                                 </a>
                                             </Col>
                                         </Row>

@@ -37,6 +37,8 @@ import StarNFTs from "./starNFTs";
 import VideoIntro from "./VideoIntro";
 import GameReviews from "./GameReviews";
 import Token_detail from "./Token_details";
+// import BuyToken from "./BuyToken/BuyToken";
+import Icons from "./community_Icon/icon";
 
 export {
 	LayOut,
@@ -78,4 +80,6 @@ export {
 	VideoIntro,
 	GameReviews,
 	Token_detail,
+	// BuyToken,
+	Icons
 };
